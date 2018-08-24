@@ -81,7 +81,7 @@ env-example 파일을 .env로 복사한다.
 
 ### Docker 컨테이너 빌드/시작
 
-아래 명령으로 컨테이너를 빌드/시작 시킨다.
+아래 명령으로 nginx와 mysql 컨테이너를 빌드/시작 시킨다.
 
 > $ docker-compose up nignx mysql
 
@@ -129,57 +129,44 @@ nginx, mysql, php 설정을 아예 컨테이너 빌드 시 적용하려면 larad
 
 > $ docker-compose restart
 
-### web-container 터미널 실행
+### workspace 터미널 실행
 
-모든 개발환경은 컨테이너에 설정되어 있으므로 웹서비스에 대한 설정이나 의존성 패키지 설치는 web-container에 들어가서 해야 한다.
+모든 개발환경은 workspace 컨테이너에 설정되어 있으므로 의존성 패키지 설치 및 php artisan, phpunit과 같은 명령은 workspace에 진입해서 수행해야 한다.
 
-아래 명령으로 web-container에 진입할 수 있다.
+아래 명령으로 workspace에 진입할 수 있다.
 
-> $ docker exec -it web-container bash
+> $ docker-compose exec workspace bash
 
 이후 composer install과 같은 명령을 수행할 수 있다.
 
-### web-container 터미널 종료
+### workspace 터미널 종료
 
 > $ exit
 
-## Proxima 개발 시작...
+## sam-api 개발 시작...
 
-개발환경과 Proxima 소스가 준비되고 "docker-compose up"또는 "docker-compose start"명령으로 web-container를 구동시켰다면 다음과 같은 절차를 진행한다.
+개발환경이 준비되고 "docker-compose up nginx mysql"또는 "docker-compose start"명령으로 개발에 필요한 컨테이너들를 구동시켰다면 다음과 같은 절차를 진행한다.
 
-### 1. Extjs 라이브러리 적용
+### 1. 라라벨 개발환경 설정
 
-web-container에 extjs-3.4라이브러리가 탑제되어 있으므로 다음 명령어들을 실행한다.
+workspace에 접속한다.
 
-web-container에 접속한다.
-> $ docker exec -it web-container bash
+> $ docker-compose exec workspace bash
 
-/extjs 디렉터리를 프로젝트 내 lib 디렉터리로 이동시킨다.
+.env-example을 복사하여 .env(닷이엔브이)를 생성한다.
 
-> $ mv /extjs /var/www/html/lib
+> $ cp .env-example .env
 
-또는 아래의 링크에서 압축파일을 다운로드 받아 /var/www/html/lib/extjs에 압축을 푼다.
+.env파일을 열어 자신의 환경과 다른부분은 수정한다.
 
-http://geminisoft.iptime.org:10000/owncloud/public.php?service=files&t=97755021053a497cc1426804fe232026&download
+### 2. 의존성 패키지 설치
 
-### 2. 설정파일 수정
-
-project/lib/config.SYSTEM.xml.example 파일을 project/lib/config.SYSTEM.xml로 복사하여 자신의 환경에 맞게 수정한다.(주로 CUSTOM_NAME 부분)
-
-### 3. Composer 설정파일 수정
-
-project/composer.json.example 파일을 project/composer.json으로 복사하여 자신의 환경에 맞게 수정한다.(주로 ProximaCustom autoload 부분)
-
-### 4. 의존성 패키지 설치
-
-web-container에 접속한다.
-
-> $ docker exec -it web-container bash
-
-의존성 패키지를 설치한다.
+workspace에서 의존성 패키지를 설치한다.
 
 > $ composer install
 
-### 5. 서비스 확인
+### 3. 서비스 확인
 
-http://localhost:8080으로 접속하여 서비스가 정상적인지 확인한다.
+http://localhost로 접속하여 서비스가 정상적인지 확인한다.
+
+
