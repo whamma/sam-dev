@@ -165,8 +165,13 @@ workspace에서 의존성 패키지를 설치한다.
 
 > $ composer install
 
-### 3. 서비스 확인
+### 3. 데이터베이스 마이그레이션
+
+아래 명령으로 데이터베이스를 마이그레이션/시딩 한다.
+
+> $ php artisan migrate --seed
+
+### 4. 서비스 확인
 
 http://localhost로 접속하여 서비스가 정상적인지 확인한다.
-
 
