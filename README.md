@@ -137,6 +137,14 @@ nginx, mysql, php 설정을 아예 컨테이너 빌드 시 적용하려면 larad
 
 > $ docker-compose exec workspace bash
 
+혹시 윈도우즈에서 다음과 같은 오류가 발생하면 명령어 앞에 winpty를 붙여서 실행한다.
+
+```
+the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'
+```
+
+> $ winpty docker-compose exec workspace bash
+
 이후 composer install과 같은 명령을 수행할 수 있다.
 
 ### workspace 터미널 종료
