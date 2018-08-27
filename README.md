@@ -87,11 +87,11 @@ env-example 파일을 .env로 복사한다.
 
 아래 명령으로 nginx와 mysql 컨테이너를 빌드/시작 시킨다.
 
-> $ docker-compose up nignx mysql
+> $ docker-compose up nginx mysql
 
 백그라운드로 실행하려면 -d 플래그를 추가한다.
 
-> $ docker-compose up -d nignx mysql
+> $ docker-compose up -d nginx mysql
 
 처음으로 docker-compose up {컨테이너}명령을 실행하면 docker이미지를 자동으로 빌드하는데 컨테이너명 없이 그냥 docker-compose up 해버리면
 laradock에서 지원하는 모든 컨테이너를 빌드하려고 하기 때문에 시간도 많이 걸리고, 쓸데없는 docker 이미지들이 빌드되어 하드디스크를 낭비하게 된다.
