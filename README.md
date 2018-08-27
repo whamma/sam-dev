@@ -163,7 +163,7 @@ workspace에 접속한다.
 
 .env-example을 복사하여 .env(닷이엔브이)를 생성한다.
 
-> $ cp .env-example .env
+> $ cp .env.example .env
 
 .env파일을 열어 자신의 환경과 다른부분은 수정한다.
 
