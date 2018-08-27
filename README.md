@@ -68,6 +68,10 @@ env-example 파일을 .env로 복사한다.
 31 COMPOSE_PROJECT_NAME=sam-api
 # PHP 버전
 38 PHP_VERSION=7.2
+# MYSQL 버전
+179 MYSQL_VERSION=5.7
+# MYSQL 데이터베이스
+180 MYSQL_DATABASE=sam
 # 타임존
 120 WORKSPACE_TIMEZONE=Asia/Seoul
 ``` 
